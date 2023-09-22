@@ -143,76 +143,102 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-//Destructuring
-const book = getBook(3);
-// const title = book.title;
-// const author = book.author;
-// title;
-// author;
+// //Destructuring
+// const book = getBook(3);
+// // const title = book.title;
+// // const author = book.author;
+// // title;
+// // author;
 
-//Object Destructuring
-const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
-  book;
-console.log(author, title, genres);
+// //Object Destructuring
+// const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+//   book;
+// console.log(author, title, genres);
 
-// const primaryGenre = genres[0];
-// const secondryGenre = genres[1];
+// // const primaryGenre = genres[0];
+// // const secondryGenre = genres[1];
 
-const [primaryGenre, secondryGenre, ...otherGeneres] = genres; // rest oparator
-console.log(primaryGenre, secondryGenre, otherGeneres);
+// const [primaryGenre, secondryGenre, ...otherGeneres] = genres; // rest oparator
+// console.log(primaryGenre, secondryGenre, otherGeneres);
 
-const newGenere = [...genres, "Epic Fantacy"]; // spread oparator
-newGenere;
+// const newGenere = [...genres, "Epic Fantacy"]; // spread oparator
+// newGenere;
 
-const updateBook = {
-  ...book,
-  moviePublicationalDate: "2001/01/10", //Adding a new property using spread
-  pages: 3000, // overiting exsisting property using spread
-};
-updateBook;
+// const updateBook = {
+//   ...book,
+//   moviePublicationalDate: "2001/01/10", //Adding a new property using spread
+//   pages: 3000, // overiting exsisting property using spread
+// };
+// updateBook;
 
-//Template literals
-const summary = `${title}, is a a book with ${pages} pages`;
-summary;
+// //Template literals
+// const summary = `${title}, is a a book with ${pages} pages`;
+// summary;
 
-//Ternarie Oparator
-const pagesRange =
-  pages > 1000 ? "Over A thousand Pages" : "Less Than 1000 Pages";
-pagesRange;
-console.log(`The Book Has ${pagesRange}`);
+// //Ternarie Oparator
+// const pagesRange =
+//   pages > 1000 ? "Over A thousand Pages" : "Less Than 1000 Pages";
+// pagesRange;
+// console.log(`The Book Has ${pagesRange}`);
 
-// function getYear(str) {
-//   return str.split("-")[0];
+// // function getYear(str) {
+// //   return str.split("-")[0];
+// // }
+
+// //Arrow Functions
+// const getYear = (str) => str.split("-")[0];
+// console.log(getYear(publicationDate));
+
+// //Short Circuting
+// console.log(true && "Some Strings");
+// console.log(false && "Some Strings");
+
+// console.log(hasMovieAdaptation && `${title} book has a movie`);
+
+// //falty Values = 0, "", null, undifined
+
+// // Or Oparator ||
+// console.log(true || "SOme Strings");
+// console.log(null || "SOme Strings");
+
+// console.log(book.translations.spanish);
+// const spanishTranslation =
+//   book.translations.spanish || "Not Translated To Spanish";
+// console.log(spanishTranslation);
+
+// // Optional chaining
+
+// function getTotalReviewCount(book) {
+//   const goodreads = book.reviews?.goodreads?.reviewsCount;
+//   const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+
+//   return goodreads + librarything;
 // }
 
-//Arrow Functions
-const getYear = (str) => str.split("-")[0];
-console.log(getYear(publicationDate));
+// console.log(getTotalReviewCount(book));
 
-//Short Circuting
-console.log(true && "Some Strings");
-console.log(false && "Some Strings");
+const books = getBooks();
 
-console.log(hasMovieAdaptation && `${title} book has a movie`);
+//map
+const x = [1, 2, 3, 4, 5].map((e) => e * 2);
+x;
 
-//falty Values = 0, "", null, undifined
+const titles = books.map((book) => book.title);
+titles;
 
-// Or Oparator ||
-console.log(true || "SOme Strings");
-console.log(null || "SOme Strings");
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+}));
 
-console.log(book.translations.spanish);
-const spanishTranslation =
-  book.translations.spanish || "Not Translated To Spanish";
-console.log(spanishTranslation);
+essentialData;
 
-// Optional chaining
+const lonBooksWithMovies = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+lonBooksWithMovies;
 
-function getTotalReviewCount(book) {
-  const goodreads = book.reviews.goodreads.reviewsCount;
-  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
-
-  return goodreads + librarything;
-}
-
-console.log(getTotalReviewCount(book));
+const adventureBooks = books
+  .filter((book) => book.genres.includes("adventure"))
+  .map((book) => book.title);
+adventureBooks;
