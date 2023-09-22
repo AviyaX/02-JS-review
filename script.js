@@ -174,3 +174,9 @@ updateBook;
 //Template literals
 const summary = `${title}, is a a book with ${pages} pages`;
 summary;
+
+//Ternarie Oparator
+const pagesRange =
+  pages > 1000 ? "Over A thousand Pages" : "Less Than 1000 Pages";
+pagesRange;
+console.log(`The Book Has ${pagesRange}`);
