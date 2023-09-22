@@ -144,7 +144,7 @@ function getBook(id) {
 }
 
 //Destructuring
-const book = getBook(1);
+const book = getBook(3);
 // const title = book.title;
 // const author = book.author;
 // title;
@@ -188,3 +188,31 @@ console.log(`The Book Has ${pagesRange}`);
 //Arrow Functions
 const getYear = (str) => str.split("-")[0];
 console.log(getYear(publicationDate));
+
+//Short Circuting
+console.log(true && "Some Strings");
+console.log(false && "Some Strings");
+
+console.log(hasMovieAdaptation && `${title} book has a movie`);
+
+//falty Values = 0, "", null, undifined
+
+// Or Oparator ||
+console.log(true || "SOme Strings");
+console.log(null || "SOme Strings");
+
+console.log(book.translations.spanish);
+const spanishTranslation =
+  book.translations.spanish || "Not Translated To Spanish";
+console.log(spanishTranslation);
+
+// Optional chaining
+
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+
+  return goodreads + librarything;
+}
+
+console.log(getTotalReviewCount(book));
