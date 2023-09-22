@@ -170,3 +170,7 @@ const updateBook = {
   pages: 3000, // overiting exsisting property using spread
 };
 updateBook;
+
+//Template literals
+const summary = `${title}, is a a book with ${pages} pages`;
+summary;
